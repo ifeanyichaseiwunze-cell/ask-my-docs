@@ -5,7 +5,7 @@ MODEL = "qwen2.5:3b"
 
 def ask_ai(question: str) -> str:
     response = ollama.chat(
-        model=MODEL,
+        model = MODEL,
         messages=[
             {"role": "system", "content": "You are a helpful assistant. Answer clearly in 2-4 sentences."},
             {"role": "user", "content": question},
