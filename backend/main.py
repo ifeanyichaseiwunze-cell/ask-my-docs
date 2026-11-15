@@ -2,9 +2,15 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from ai import ask_ai
 from db import find_answer, save_answer
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 class Question(BaseModel):
     question: str
