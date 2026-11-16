@@ -6,6 +6,7 @@ type AskRespone = {
   question: string;
   answer: string;
   cached: boolean;
+  sources?: string[];
 };
 
 const API_URL = "http://127.0.0.1:8000";
@@ -16,6 +17,7 @@ export default function Home() {
   const [cached, setCached] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sources, setSources] = useState<string[]>([]);
 
   async function handleAsk() {
     if (!question.trim()) return;
@@ -23,6 +25,7 @@ export default function Home() {
     setLoading(true);
     setError("");
     setAnswer("");
+    setSources([]);
 
     try {
       const res = await fetch(`${API_URL}/ask`, {
@@ -34,6 +37,7 @@ export default function Home() {
       const data: AskRespone = await res.json();
       setAnswer(data.answer);
       setCached(data.cached);
+      setSources(data.sources ?? []);
     } catch {
       setError("Couldn't reach the backend. Is uvicorn running?");
     } finally {
@@ -68,6 +72,9 @@ export default function Home() {
           <p className="mt-2 text-sm text-gray-500">
             {cached ? "This was loaded from the memory in our chats" : "This is an answer not from our chats."}
           </p>
+          {sources.length > 0 && (
+            <p className="mt-1 text-sm text-gray-500">Sources: {sources.join(", ")}</p>
+          )}
         </div>
       )}
     </main>
