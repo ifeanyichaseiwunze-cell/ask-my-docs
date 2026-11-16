@@ -8,7 +8,10 @@ The first time I tested a local AI model, I asked it "Who is Chase Iwunze?" It t
 I wanted to fix that, so I added RAG (Retrieval-Augmented Generation). Now the app looks through my documents first, gives the AI only the parts that matter, and makes it answer from those. If the answer isn't in my documents, it says "I don't know" instead of guessing. It also shows which file the answer came from.
 
 ## Demo
-_(demo video goes here)_
+
+https://github.com/user-attachments/assets/fa1079de-4166-4866-a7bb-dd078c597b96
+
+
 
 ## How it works
 ```mermaid
